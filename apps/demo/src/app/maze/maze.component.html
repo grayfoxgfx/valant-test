@@ -1,0 +1,44 @@
+<div style="text-align: center;">
+    <div class="container">
+        <div>
+            <label for="fileUpload" class="file-upload">
+                <input type="file" accept=".txt" id="fileUpload" class="file-input" (change)="onFileSelected($event)" />
+                Upload File
+            </label>
+
+            <div *ngIf="!fileName" id="fileNameDisplay" class="file-upload">No upload file.</div>
+        </div>
+
+        <div>
+            <p>
+                <select name="miselect" [(ngModel)]="selectedId" (change)="onChange($event)">
+                    <option selected value="0">Upload a Maze</option>
+                    <option *ngFor="let maze of listofMazes" [ngValue]="maze.id">Maze {{maze.id}}
+                    </option>
+                </select>
+            </p>
+        </div>
+    </div>
+
+    <div class="maze-form">
+
+        <button type="button" (click)="drawMaze()" [disabled]="busy">
+            Restart
+        </button>
+
+        <button type="button" (click)="drawSolution()">Show Solution</button>
+    </div>
+    <section>
+        <canvas id="maze"></canvas>
+    </section>
+    <section>
+        <div class="arrows">
+            <div><span (click)="move('Up')" title="move up">⬆️</span></div>
+            <div>
+                <span (click)="move('Left')" title="move left">⬅️</span>
+                <span (click)="move('Right')" title="move right">➡️</span>
+            </div>
+            <div><span (click)="move('Down')" title="move down">⬇️</span></div>
+            </div>
+            </section>
+            </div>
